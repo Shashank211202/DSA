@@ -15,7 +15,7 @@ class Solution {
        dummy.next = head;
        ListNode p = dummy;
        ListNode c = head;
-       ListNode n = head.next;
+       ListNode n = c.next;
 
        while(c != null && n != null){
         p.next = n;
