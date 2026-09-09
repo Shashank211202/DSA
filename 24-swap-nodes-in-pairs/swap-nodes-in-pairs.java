@@ -10,22 +10,12 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-       if(head == null || head.next == null) return head;
-       ListNode dummy = new ListNode();
-       dummy.next = head;
-       ListNode p = dummy;
-       ListNode c = head;
-       ListNode n = head.next;
-
-       while(c != null && n != null){
-        p.next = n;
-        c.next = n.next;
-        n.next = c;
-        p = c;
-        c = p.next; 
-        n = c != null ? c.next : null;
-
-       }
-       return dummy.next;
+        // Recursive Appraoch
+        if(head == null || head.next == null) return head;
+        ListNode l = head;
+        ListNode r = head.next;
+        l.next = swapPairs(r.next);
+        r.next = l;
+        return r;
     }
 }
