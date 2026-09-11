@@ -1,7 +1,7 @@
 class Solution {
     public int secondHighest(String s) {
-        int max = Integer.MIN_VALUE;
-        int secondmax = Integer.MIN_VALUE;
+        int max = -1;
+        int secondmax = -1;
         for (int i = 0; i < s.length(); i++) {
             if (Character.isDigit(s.charAt(i))) {
                 int num = s.charAt(i) - '0';
@@ -13,6 +13,6 @@ class Solution {
                 }
             }
         }
-        return secondmax == Integer.MIN_VALUE ? -1 : secondmax;
+        return secondmax;
     }
 }
