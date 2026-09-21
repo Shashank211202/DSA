@@ -1,23 +1,15 @@
-import java.util.HashMap;
-  
-  public class Solution {
-      public boolean isAnagram(String s, String t) {
-          if (s.length() != t.length()) return false;
-  
-          HashMap<Character, Integer> map = new HashMap<>();
-  
-          for (char c : s.toCharArray()) {
-              map.put(c, map.getOrDefault(c, 0) + 1);
-          }
-  
-          for (char c : t.toCharArray()) {
-              if (!map.containsKey(c) || map.get(c) == 0) {
-                  return false;
-              }
-              map.put(c, map.get(c) - 1);
-          }
-  
-          return true;
-      }
-  }
-      
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()) return false;
+        
+        int[] freqarr = new int[26];
+        for(int i = 0; i < s.length(); i++){
+            freqarr[s.charAt(i) - 'a']++;
+            freqarr[t.charAt(i) - 'a']--;
+        }
+        for(int count : freqarr){
+            if(count != 0) return false;
+        }
+        return true;
+    }
+}
