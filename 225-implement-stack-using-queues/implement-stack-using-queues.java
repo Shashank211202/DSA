@@ -1,56 +1,32 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 class MyStack {
-
-    Queue<Integer> q1;
-    Queue<Integer> q2;
-
-    public MyStack() {
-        q1 = new ArrayDeque<>();
-        q2 = new ArrayDeque<>();
-    }
+    Queue<Integer> q = new LinkedList<>();
 
     public void push(int x) {
-        q1.offer(x);
+        q.offer(x);
     }
 
     public int pop() {
-
-        int n = q1.size();
-
+        int n = q.size();
         for (int i = 0; i < n - 1; i++) {
-            q2.offer(q1.poll());
+            q.offer(q.poll());
         }
-
-        int ans = q1.poll();
-
-        Queue<Integer> temp = q1;
-        q1 = q2;
-        q2 = temp;
-
-        return ans;
+        return q.poll();
     }
 
     public int top() {
-
-        int n = q1.size();
-
+        int n = q.size();
         for (int i = 0; i < n - 1; i++) {
-            q2.offer(q1.poll());
+            q.offer(q.poll());
         }
-
-        int ans = q1.peek();
-
-        q2.offer(q1.poll());
-
-        Queue<Integer> temp = q1;
-        q1 = q2;
-        q2 = temp;
-
-        return ans;
+        int front = q.poll();
+        q.offer(front);
+        return front;
     }
 
     public boolean empty() {
-        return q1.isEmpty();
+        return q.isEmpty();
     }
 }
