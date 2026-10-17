@@ -2,10 +2,9 @@
 import java.util.*;
 
 class MinStack {
-   List<int[]> s = new ArrayList<>();
-
+   List<int[]> s;
     public MinStack() {
-        
+        s = new ArrayList<>();
     }
 
     public void push(int val) {
