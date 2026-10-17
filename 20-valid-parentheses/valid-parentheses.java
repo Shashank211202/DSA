@@ -1,34 +1,28 @@
-
-import java.util.Stack;
-
 class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
 
+        Map<Character, Character> map = new HashMap<>();
+        map.put(')', '(');
+        map.put('}', '{');
+        map.put(']', '[');
+
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
 
-            // Push opening brackets
             if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
             } else {
-                // No opening bracket available to match
                 if (stack.isEmpty()) {
                     return false;
                 }
 
-                char top = stack.pop();
-
-                // Check matching brackets
-                if ((ch == ')' && top != '(') ||
-                    (ch == '}' && top != '{') ||
-                    (ch == ']' && top != '[')) {
+                if (stack.pop() != map.get(ch)) {
                     return false;
                 }
             }
         }
 
-        // All opening brackets must be matched
         return stack.isEmpty();
     }
 }
